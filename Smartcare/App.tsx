@@ -6,7 +6,7 @@ import { StatusBar } from 'react-native';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import Home from './screens/Home';
-// import Chatbot from './screens/Chatbot';
+import Chatbot from './screens/Chatbot';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +23,7 @@ const App = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
-        {/* <Stack.Screen name="Chatbot" component={Chatbot} /> */}
+        <Stack.Screen name="Chatbot" component={Chatbot} />
       </Stack.Navigator>
     </NavigationContainer>
   );
