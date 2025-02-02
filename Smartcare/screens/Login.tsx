@@ -34,7 +34,7 @@ const Login = ({ navigation }: { navigation: NavigationProp<any> }) => {
 
   return (
     <ImageBackground
-      source={require('../assets/images/banner.png')}
+      source={require('../images/banner.png')}
       style={styles.container}
       resizeMode="cover"
     >
@@ -43,7 +43,7 @@ const Login = ({ navigation }: { navigation: NavigationProp<any> }) => {
         style={styles.container}
       >
         <LinearGradient
-          colors={['rgba(102, 126, 234, 0.9)', 'rgba(118, 75, 162, 0.9)']}
+          colors={['rgba(102, 126, 234, 0.9)', 'rgba(247, 246, 249, 0.9)']}
           style={styles.gradient}
         >
           <View style={styles.loginBox}>

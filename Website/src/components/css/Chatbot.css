@@ -465,3 +465,187 @@
   70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
   100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
 }
+
+
+.chat-button-wrapper {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1000;
+}
+
+.chat-button {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 
+    0 6px 16px rgba(37, 99, 235, 0.2),
+    0 2px 8px rgba(124, 58, 237, 0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.chat-button::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  z-index: 1;
+}
+
+.chat-button-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-icon {
+  width: 50px;
+  height: 50px;
+  background-image: url('./images/chatbot.png');  /* Update this path to match your project structure */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+  /* filter: brightness(0) invert(1); Makes the icon white */
+}
+
+/* Glowing effect */
+.chat-button-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+    rgba(37, 99, 235, 0.8) 0%,
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Ripple effect */
+.chat-button-ripple {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 3px solid rgba(124, 58, 237, 0.5);
+  animation: ripple 2s infinite;
+  pointer-events: none;
+}
+
+/* Hover effects */
+.chat-button:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 
+    0 12px 24px rgba(37, 99, 235, 0.25),
+    0 6px 12px rgba(124, 58, 237, 0.2);
+}
+
+.chat-button:hover .chat-icon {
+  transform: scale(1.15);
+}
+
+.chat-button:hover .chat-button-glow {
+  opacity: 0.6;
+}
+
+.chat-button:active {
+  transform: translateY(2px) scale(0.95);
+}
+
+/* Tooltip */
+.chat-tooltip {
+  position: absolute;
+  right: calc(100% + 16px);
+  background: #1e293b;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.chat-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 6px solid #1e293b;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+.chat-button:hover .chat-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Modern glass effect */
+@supports (backdrop-filter: blur(4px)) {
+  .chat-tooltip {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .chat-button-wrapper {
+    bottom: 24px;
+    right: 24px;
+  }
+  
+  .chat-button {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .chat-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.chat-button-wrapper {
+  animation: float 4s ease-in-out infinite;
+}
