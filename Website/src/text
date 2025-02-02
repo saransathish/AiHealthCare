@@ -1,0 +1,535 @@
+// This is app.tsx file 
+// import React, { useState } from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import Login from './components/Login';
+// import Register from './components/Register';
+// import Home from './components/Home';
+// import Chatbot from './components/Chatbot';
+// import './components/css/Navbar.css';
+
+// const App: React.FC = () => {
+//     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+//     const handleLogin = () => {
+//         setIsLoggedIn(true);
+//     };
+
+//     const handleLogout = () => {
+//         localStorage.removeItem('access_token');
+//         setIsLoggedIn(false);
+//     };
+
+//     return (
+//         <Router>
+//             {/* <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} /> */}
+//             <Routes>
+//                 <Route path="/login" element={<Login onLogin={handleLogin} />} />
+//                 <Route path="/register" element={<Register />} />
+//                 <Route path="/home" element={<Home />} />
+//                 <Route path="/chatbot" element={<Chatbot />} />
+//                 <Route path="/" element={<Login onLogin={handleLogin} />} />
+//             </Routes>
+//         </Router>
+//     );
+// };
+
+// export default App;
+
+// This is api.ts file
+// import axios from 'axios';
+
+// const API_URL = 'http://18.224.212.249:8000/api';
+
+// export interface ChatResponse {
+//   success: boolean;
+//   response: string;
+//   disclaimer?: string;
+//   language?: string;
+// }
+
+// export interface UserQuestion {
+//   query: string;
+//   session_id: string;
+// }
+
+// export interface RegisterResponse {
+//   success: boolean;
+//   message: string;
+//   user?: {
+//     username: string;
+//     email: string;
+//     phone_number: string;
+//   };
+// }
+
+// export interface LoginResponse {
+//   access: string;
+//   refresh: string;
+//   user: {
+//     username: string;
+//     email: string;
+//   };
+// }
+
+// export interface UserDetails {
+//   username: string;
+//   email: string;
+//   phone_number: string;
+// }
+
+// // Authentication functions
+// export const register = async (
+//   username: string, 
+//   email: string, 
+//   password: string, 
+//   phone_number: string
+// ): Promise<RegisterResponse> => {
+//   try {
+//     const response = await axios.post(`${API_URL}/register/`, {
+//       username,
+//       email,
+//       password,
+//       phone_number,
+//     });
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(error instanceof Error ? error.message : 'Registration failed');
+//   }
+// };
+
+// export const login = async (
+//   username: string, 
+//   password: string
+// ): Promise<LoginResponse> => {
+//   try {
+//     localStorage.setItem('userid', username);
+    
+//     const response = await axios.post(`${API_URL}/login/`, {
+//       username,
+//       password,
+//     });
+    
+//     if (response.data.access) {
+//       localStorage.setItem('access_token', response.data.access);
+//       localStorage.setItem('refresh_token', response.data.refresh);
+//     }
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(error instanceof Error ? error.message : 'Login failed');
+//   }
+// };
+
+// // User related functions
+// export const getUserDetails = async (): Promise<UserDetails> => {
+//   try {
+//     const token = localStorage.getItem('access_token');
+//     if (!token) {
+//       throw new Error('No authentication token found');
+//     }
+
+//     const response = await axios.get(`${API_URL}/user/`, {
+//       headers: { Authorization: `Bearer ${token}` }
+//     });
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(error instanceof Error ? error.message : 'Failed to get user details');
+//   }
+// };
+
+// // Chatbot related functions
+
+// export const storeUserQuestion = async (question: UserQuestion): Promise<void> => {
+//   try {
+//     const token = localStorage.getItem('access_token');
+//     if (!token) {
+//       throw new Error('No authentication token found');
+//     }
+
+//     await axios.post(
+//       `${API_URL}/user/gather/`,
+//       question,
+//       {
+//         headers: { Authorization: `Bearer ${token}` }
+//       }
+//     );
+//   } catch (error) {
+//     throw new Error(error instanceof Error ? error.message : 'Failed to store question');
+//   }
+// };
+
+// export const getChatbotResponse = async (question: UserQuestion): Promise<ChatResponse> => {
+//   try {
+//     const token = localStorage.getItem('access_token');
+//     if (!token) {
+//       throw new Error('No authentication token found');
+//     }
+
+//     const response = await axios.post(
+//       `${API_URL}/chatbot/chat/`,
+//       question,
+//       {
+//         headers: { 
+//           Authorization: `Bearer ${token}`,
+//           'Content-Type': 'application/json',
+//           'Accept': 'application/json'
+//         }
+//       }
+//     );
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(error instanceof Error ? error.message : 'Failed to get chatbot response');
+//   }
+// };
+
+// this is my login.tsx File
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { login } from '../utils/api';
+// import './css/Login.css';
+
+// interface LoginProps {
+//     onLogin: () => void;
+// }
+
+// const Login: React.FC<LoginProps> = ({ onLogin }) => {
+//     const [username, setUsername] = useState('');
+//     const [password, setPassword] = useState('');
+//     const [error, setError] = useState('');
+//     const navigate = useNavigate();
+
+//     const handleSubmit = async (e: React.FormEvent) => {
+//         e.preventDefault();
+//         try {
+//             await login(username, password);
+//             onLogin(); // Update login state
+//             navigate('/home');
+//         } catch (err) {
+//             setError('Invalid username or password');
+//         }
+//     };
+
+//     return (
+//         <div className="login-container">
+//             <div className="login-box">
+//                 <h2>Login</h2>
+//                 {error && <p className="error-message">{error}</p>}
+//                 <form onSubmit={handleSubmit}>
+//                     <div className="form-group">
+//                         <label>Username</label>
+//                         <input
+//                             type="text"
+//                             value={username}
+//                             onChange={(e) => setUsername(e.target.value)}
+//                             required
+//                         />
+//                     </div>
+//                     <div className="form-group">
+//                         <label>Password</label>
+//                         <input
+//                             type="password"
+//                             value={password}
+//                             onChange={(e) => setPassword(e.target.value)}
+//                             required
+//                         />
+//                     </div>
+//                     <button type="submit" className="submit-button">Login</button>
+//                 </form>
+//                 <p className="register-link">
+//                     Don't have an account? <a href="/register">Register here</a>.
+//                 </p>
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default Login;
+
+// this is my login.css file
+// .login-container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     min-height: 100vh;
+//     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+//     padding: 20px;
+//     background-image: url('./images/banner.png');
+//     background-size: cover;
+// }
+
+// .login-box {
+//     background: rgba(255, 255, 255, 0.95);
+//     padding: 2.5rem;
+//     border-radius: 15px;
+//     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+//     width: 100%;
+//     max-width: 400px;
+//     transition: transform 0.3s ease;
+// }
+
+// .login-box:hover {
+//     transform: translateY(-5px);
+// }
+
+// .login-box h2 {
+//     color: #2d3748;
+//     text-align: center;
+//     margin-bottom: 1.5rem;
+//     font-size: 2rem;
+//     font-weight: 600;
+// }
+
+// .form-group {
+//     margin-bottom: 1.5rem;
+//     text-align: left;
+// }
+
+// .form-group label {
+//     display: block;
+//     margin-bottom: 0.5rem;
+//     color: #4a5568;
+//     font-weight: 500;
+// }
+
+// .form-group input {
+//     width: 100%;
+//     padding: 0.75rem;
+//     border: 2px solid #e2e8f0;
+//     border-radius: 8px;
+//     font-size: 1rem;
+//     transition: border-color 0.3s ease;
+// }
+
+// .form-group input:focus {
+//     outline: none;
+//     border-color: #667eea;
+//     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+// }
+
+// .submit-button {
+//     width: 100%;
+//     padding: 0.75rem;
+//     background: #667eea;
+//     color: white;
+//     border: none;
+//     border-radius: 8px;
+//     font-size: 1rem;
+//     font-weight: 600;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+//     margin-top: 1rem;
+// }
+
+// .submit-button:hover {
+//     background: #5a67d8;
+// }
+
+// .error-message {
+//     color: #e53e3e;
+//     text-align: center;
+//     margin-bottom: 1rem;
+//     padding: 0.5rem;
+//     border-radius: 6px;
+//     background-color: #fff5f5;
+// }
+
+// .register-link {
+//     text-align: center;
+//     margin-top: 1.5rem;
+//     color: #4a5568;
+// }
+
+// .register-link a {
+//     color: #667eea;
+//     text-decoration: none;
+//     font-weight: 600;
+//     transition: color 0.3s ease;
+// }
+
+// .register-link a:hover {
+//     color: #5a67d8;
+//     text-decoration: underline;
+// }
+
+// this is my register.tsx file
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { register } from '../utils/api';
+// import './css/Register.css';
+
+// const Register: React.FC = () => {
+//     const [username, setUsername] = useState('');
+//     const [email, setEmail] = useState('');
+//     const [password, setPassword] = useState('');
+//     const [phoneNumber, setPhoneNumber] = useState('');
+//     const [error, setError] = useState('');
+//     const navigate = useNavigate();
+
+//     const handleSubmit = async (e: React.FormEvent) => {
+//         e.preventDefault();
+//         try {
+//             await register(username, email, password, phoneNumber);
+//             navigate('/login');
+//         } catch (err) {
+//             setError('Registration failed');
+//         }
+//     };
+
+//     return (
+//         <div className="register-container">
+//             <div className="register-box">
+//                 <h2>Register</h2>
+//                 {error && <p className="error-message">{error}</p>}
+//                 <form onSubmit={handleSubmit}>
+//                     <div className="form-group">
+//                         <label>Username</label>
+//                         <input
+//                             type="text"
+//                             value={username}
+//                             onChange={(e) => setUsername(e.target.value)}
+//                             required
+//                         />
+//                     </div>
+//                     <div className="form-group">
+//                         <label>Email</label>
+//                         <input
+//                             type="email"
+//                             value={email}
+//                             onChange={(e) => setEmail(e.target.value)}
+//                             required
+//                         />
+//                     </div>
+//                     <div className="form-group">
+//                         <label>Password</label>
+//                         <input
+//                             type="password"
+//                             value={password}
+//                             onChange={(e) => setPassword(e.target.value)}
+//                             required
+//                         />
+//                     </div>
+//                     <div className="form-group">
+//                         <label>Phone Number</label>
+//                         <input
+//                             type="text"
+//                             value={phoneNumber}
+//                             onChange={(e) => setPhoneNumber(e.target.value)}
+//                         />
+//                     </div>
+//                     <button type="submit" className="submit-button">Register</button>
+//                 </form>
+//                 <p className="login-link">
+//                     Already have an account? <a href="/login">Login here</a>.
+//                 </p>
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default Register;
+
+// this is my register.css file
+
+// .register-container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     min-height: 100vh;
+//     background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+//     padding: 20px;
+//     background-image: url('./images/banner mirror.png');
+//     background-size: cover;
+// }
+
+// .register-box {
+//     background: rgba(255, 255, 255, 0.95);
+//     padding: 2.5rem;
+//     border-radius: 15px;
+//     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+//     width: 100%;
+//     max-width: 450px;
+//     transition: transform 0.3s ease;
+// }
+
+// .register-box:hover {
+//     transform: translateY(-5px);
+// }
+
+// .register-box h2 {
+//     color: #2d3748;
+//     text-align: center;
+//     margin-bottom: 1.5rem;
+//     font-size: 2rem;
+//     font-weight: 600;
+// }
+
+// .form-group {
+//     margin-bottom: 1.5rem;
+//     text-align: left;
+// }
+
+// .form-group label {
+//     display: block;
+//     margin-bottom: 0.5rem;
+//     color: #4a5568;
+//     font-weight: 500;
+// }
+
+// .form-group input {
+//     width: 100%;
+//     padding: 0.75rem;
+//     border: 2px solid #e2e8f0;
+//     border-radius: 8px;
+//     font-size: 1rem;
+//     transition: all 0.3s ease;
+// }
+
+// .form-group input:focus {
+//     outline: none;
+//     border-color: #4fd1c5;
+//     box-shadow: 0 0 0 3px rgba(79, 209, 197, 0.1);
+// }
+
+// .submit-button {
+//     width: 100%;
+//     padding: 0.75rem;
+//     background: #4fd1c5;
+//     color: white;
+//     border: none;
+//     border-radius: 8px;
+//     font-size: 1rem;
+//     font-weight: 600;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+//     margin-top: 1rem;
+// }
+
+// .submit-button:hover {
+//     background: #38b2ac;
+// }
+
+// .error-message {
+//     color: #e53e3e;
+//     text-align: center;
+//     margin-bottom: 1rem;
+//     padding: 0.5rem;
+//     border-radius: 6px;
+//     background-color: #fff5f5;
+// }
+
+// .login-link {
+//     text-align: center;
+//     margin-top: 1.5rem;
+//     color: #4a5568;
+// }
+
+// .login-link a {
+//     color: #4fd1c5;
+//     text-decoration: none;
+//     font-weight: 600;
+//     transition: color 0.3s ease;
+// }
+
+// .login-link a:hover {
+//     color: #38b2ac;
+//     text-decoration: underline;
+// }
