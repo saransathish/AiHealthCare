@@ -33,7 +33,7 @@
 // };
 // api.ts
 import axios from 'axios';
-const API_URL = 'http://100.127.255.148:8000/api';
+const API_URL = 'http://18.224.212.249:8000/api';
 // Authentication functions
 export const register = async (username, email, password, phone_number) => {
     try {
