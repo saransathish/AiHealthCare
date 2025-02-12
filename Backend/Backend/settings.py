@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "smartcare",  # Replace with your database name
+        'NAME': "dummy",  # Replace with your database name
         'USER': "postgres",  # Replace with your database username
         'PASSWORD': "postgres",  # Replace with your database password
         'HOST': "smartcare.cdy8yi0g8oyc.us-east-2.rds.amazonaws.com",  # Replace with your AWS RDS endpoint
