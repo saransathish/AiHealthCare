@@ -4,7 +4,7 @@ from datetime import timedelta
 import os
 
 # load_dotenv()
-MISTRAL_API_KEY = "fKvEx9jkjolPiDfSY2h6HF3RcZGyX6hi"
+MISTRAL_API_KEY = "kEmujyYv6VE95Bs9LEzJ3IwfBZNyNyRp"
 # AWS_USER_NAME = os.getenv('AWS_USER_NAME')
 # AWS_USER_PASS = os.getenv('AWS_USER_PASS')
 # AWS_DB_NAME = os.getenv('AWS_DB_NAME')
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "dummy",  # Replace with your database name
+        'NAME': "testing",  # Replace with your database name
         'USER': "postgres",  # Replace with your database username
         'PASSWORD': "postgres",  # Replace with your database password
         'HOST': "smartcare.cdy8yi0g8oyc.us-east-2.rds.amazonaws.com",  # Replace with your AWS RDS endpoint
