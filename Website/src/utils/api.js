@@ -31,7 +31,6 @@
 //     });
 //     return response.data;
 // };
-
 // api.ts
 import axios from 'axios';
 const API_URL = 'http://3.91.40.230:8000/api';
