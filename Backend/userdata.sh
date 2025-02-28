@@ -9,7 +9,8 @@ GIT_REPO_URL="https://github.com/saransathish/AiHealthCare.git"
 PROJECT_MAIN_DIR_NAME="AiHealthCare/Backend"
 
 # Clone repository
-git clone "$GIT_REPO_URL" "/home/ubuntu/$PROJECT_MAIN_DIR_NAME"
+git clone "$GIT_REPO_URL" "/home/ubuntu/AiHealthCare"
+
 
 cd "/home/ubuntu/$PROJECT_MAIN_DIR_NAME"
 
