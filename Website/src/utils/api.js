@@ -34,7 +34,7 @@
 // api.ts
 import axios from 'axios';
 // const API_URL = 'http://3.91.40.230:8000/api';
-const API_URL = 'http://3.91.40.230:8000/api';
+const API_URL = 'http://localhost:8000/api';
 
 // Authentication functions
 export const register = async (username, email, password, phone_number) => {
