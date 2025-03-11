@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+sudo apt update && sudo apt install -y python3 python3-pip
+
 # Replace {YOUR_GIT_REOPO_URL} with your actual Git repository URL
 GIT_REPO_URL="https://github.com/saransathish/AiHealthCare.git"
 #GIT_REPO_URL="https://<your_username>:<your_PAT>@github.com/codewithmuh/django-aws-ec2-autoscaling.git"

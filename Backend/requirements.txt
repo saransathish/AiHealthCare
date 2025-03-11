@@ -1,120 +1,147 @@
-accelerate
-aiohappyeyeballs
-aiohttp
-aiosignal
-annotated-types
-anyio
-asgiref
-attrs
-blis
-catalogue
-certifi
-charset-normalizer
-click
-cloudpathlib
-colorama
-confection
-cymem
-dataclasses-json
-Django
+# accelerate
+# aiohappyeyeballs
+# aiohttp
+# aiosignal
+# annotated-types
+# anyio
+# asgiref
+# attrs
+# blis
+# catalogue
+# certifi
+# charset-normalizer
+# click
+# cloudpathlib
+# colorama
+# confection
+# cymem
+# dataclasses-json
+# Django
+# django-cors-headers
+# djangorestframework
+# djangorestframework_simplejwt
+# duckduckgo_search
+# eval_type_backport
+# faiss-cpu
+# filelock
+# frozenlist
+# fsspec
+# gunicorn
+# greenlet
+# h11
+# httpcore
+# httpx
+# httpx-sse
+# huggingface-hub
+# idna
+# Jinja2
+# joblib
+# jsonpatch
+# jsonpath-python
+# jsonpointer
+# langchain
+# langchain-community
+# langchain-core
+# langchain-mistralai
+# langchain-text-splitters
+# langcodes
+# langsmith
+# language_data
+# lxml
+# marisa-trie
+# markdown-it-py
+# MarkupSafe
+# marshmallow
+# mdurl
+# mistralai
+# mpmath
+# multidict
+# murmurhash
+# mypy-extensions
+# networkx
+# nltk
+# numexpr
+# numpy
+# orjson
+# packagin
+# pandas
+# pillow
+# preshed
+# primp
+# propcache
+# psutil
+# psycopg2-binary
+# pydantic
+# pydantic-settings
+# pydantic_core
+# Pygments
+# PyJWT
+# python-dateutil
+# python-dotenv
+# pytz
+# PyYAML
+# regex
+# requests
+# requests-toolbelt
+# rich
+# sacremoses
+# safetensors
+# scikit-learn
+# scipy
+# sentence-transformers
+# setuptools
+# shellingham
+# six
+# smart-open
+# sniffio
+# spacy
+# spacy-legacy
+# spacy-loggers
+# SQLAlchemy
+# sqlparse
+# srsly
+# sympy
+# tenacity
+# thinc
+# threadpoolctl
+# tokenizers
+# torch
+# tqdm
+# transformers
+# typer
+# typing-inspect
+# typing_extensions
+# tzdata
+# urllib3
+# wasabi
+# weasel
+# wrapt
+# yarl
+# zstandard
+
+django
 django-cors-headers
 djangorestframework
 djangorestframework_simplejwt
 duckduckgo_search
-eval_type_backport
-faiss-cpu
-filelock
-frozenlist
-fsspec
 gunicorn
-greenlet
-h11
-httpcore
 httpx
-httpx-sse
+faiss-cpu
 huggingface-hub
-idna
-Jinja2
-joblib
-jsonpatch
-jsonpath-python
-jsonpointer
 langchain
 langchain-community
 langchain-core
 langchain-mistralai
-langchain-text-splitters
-langcodes
-langsmith
-language_data
-lxml
-marisa-trie
-markdown-it-py
-MarkupSafe
-marshmallow
-mdurl
 mistralai
-mpmath
-multidict
-murmurhash
-mypy-extensions
-networkx
-nltk
-numexpr
 numpy
-orjson
-packagin
 pandas
 pillow
-preshed
-primp
-propcache
-psutil
 psycopg2-binary
-pydantic
-pydantic-settings
-pydantic_core
-Pygments
-PyJWT
-python-dateutil
-python-dotenv
-pytz
-PyYAML
-regex
 requests
-requests-toolbelt
-rich
 sacremoses
-safetensors
 scikit-learn
 scipy
 sentence-transformers
-setuptools
-shellingham
-six
-smart-open
-sniffio
-spacy
-spacy-legacy
-spacy-loggers
 SQLAlchemy
-sqlparse
-srsly
-sympy
-tenacity
-thinc
-threadpoolctl
-tokenizers
 torch
-tqdm
 transformers
-typer
-typing-inspect
-typing_extensions
-tzdata
-urllib3
-wasabi
-weasel
-wrapt
-yarl
-zstandard
