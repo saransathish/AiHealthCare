@@ -41,7 +41,7 @@
 
 import axios from 'axios';
 
-const API_URL = 'http://3.91.40.230:8000/api';
+const API_URL = 'https://smartcare.saransathish.click/api';
 
 export interface ChatResponse {
   success: boolean;
