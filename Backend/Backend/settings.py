@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "testing",  # Replace with your database name
-        'USER': "postgres",  # Replace with your database username
-        'PASSWORD': "postgres",  # Replace with your database password
-        'HOST': "smartcare.cdy8yi0g8oyc.us-east-2.rds.amazonaws.com",  # Replace with your AWS RDS endpoint
+        'NAME': "koyebdb",  # Replace with your database name
+        'USER': "jobsDataBase",  # Replace with your database username
+        'PASSWORD': "Hl5q8APbWDwI",  # Replace with your database password
+        'HOST': "ep-quiet-paper-a28rkn6d.eu-central-1.pg.koyeb.app",  # Replace with your AWS RDS endpoint
         'PORT': '5432',  # Default PostgreSQL port
     }
 }
