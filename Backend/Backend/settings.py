@@ -140,19 +140,19 @@ CORS_ALLOW_ALL_ORIGINS = True  # For development only
 CORS_ALLOW_CREDENTIALS = True
 
 # CSRF settings
-CSRF_TRUSTED_ORIGINS = [
-    '*',
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     '*',
+# ]
 
 CSRF_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_HTTPONLY = False
-SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_HTTPONLY = False
 
 # Allow CSRF tokens to be included in requests from your frontend
-CSRF_TRUSTED_ORIGINS = [
-    '*'
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     '*'
+# ]
 
 # For development only
 CORS_ALLOW_HEADERS = [
