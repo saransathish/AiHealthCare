@@ -13,7 +13,7 @@ import os
 from django.core.cache import cache
 
 # Initialize Mistral AI
-os.environ["MISTRAL_API_KEY"] = "kEmujyYv6VE95Bs9LEzJ3IwfBZNyNyRp"
+os.environ["MISTRAL_API_KEY"] = "PZnywBbsf0t3GYZXiqK6n6azuM97I1iD"
 llm = ChatMistralAI(
     model="mistral-medium",
     temperature=0.7,

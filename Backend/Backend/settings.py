@@ -4,7 +4,7 @@ from datetime import timedelta
 import os
 
 # load_dotenv()
-MISTRAL_API_KEY = "kEmujyYv6VE95Bs9LEzJ3IwfBZNyNyRp"
+MISTRAL_API_KEY = "PZnywBbsf0t3GYZXiqK6n6azuM97I1iD"
 # AWS_USER_NAME = os.getenv('AWS_USER_NAME')
 # AWS_USER_PASS = os.getenv('AWS_USER_PASS')
 # AWS_DB_NAME = os.getenv('AWS_DB_NAME')
